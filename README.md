@@ -38,13 +38,12 @@ Este comando descargará todas las dependencias necesarias del proyecto.
 
 **Configurar variables de entorno**
 
-Editar el archivo .env y configurar:
+Editar el archivo .env y main.go (func main):
 
-- Usuario
-- Contraseña
-- Nombre de la base de datos
-- Puerto
-- Ruta de conexión (DSN)
+- Usuario -> postgres
+- Contraseña -> postgres
+- Nombre de la base de datos -> ecom
+- Host -> localhost
 
 Estos mismos datos deberán usarse en TablePlus si deseas visualizar la base de datos.
 
