@@ -5,15 +5,19 @@ import (
 	"net/http"
 	"time"
 
+	repo "github.com/AMOZINGAS/go-api-ecommerce/internal/adapters/postgresql/sqlc"
+	"github.com/AMOZINGAS/go-api-ecommerce/internal/orders"
 	"github.com/AMOZINGAS/go-api-ecommerce/internal/products"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/jackc/pgx/v5"
 )
 
 type application struct {
 	config config
 	//logger
 	//db driver
+	db *pgx.Conn
 }
 
 // run
@@ -36,9 +40,13 @@ func (app *application) mounth() http.Handler {
 		w.Write([]byte("All good"))
 	})
 
-	productService := products.NewService()
+	productService := products.NewService(repo.New(app.db))
 	productHandler := products.NewHandler(productService)
 	r.Get("/products", productHandler.ListProducts)
+
+	orderService := orders.NewService(repo.New(app.db), app.db)
+	ordersHandler := orders.NewHandler(orderService)
+	r.Post("/orders", ordersHandler.PlaceOrder)
 
 	return r
 }

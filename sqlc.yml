@@ -2,8 +2,8 @@ version: "2"
 sql:
   - engine: "postgresql"
     queries: 
-      - "./internal/adapter/postgresql/sqlc/queries.sql"
-    shcema: "./internal/adapters/postgresql/migrations"
+      - "./internal/adapters/postgresql/sqlc/queries.sql"
+    schema: "./internal/adapters/postgresql/migrations"
     gen:
       go:
         package: "repo"
