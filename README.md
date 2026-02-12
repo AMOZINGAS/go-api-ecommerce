@@ -4,7 +4,13 @@
 = PostgreSQL
 - Docker
 - sqlc
-- Goose (migraciones)
+
+		go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
+
+- Goose
+
+		go install github.com/pressly/goose/v3/cmd/goose@latest
+
 - Chi (router)
 
 **Requisitos previos**
